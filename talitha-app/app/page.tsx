@@ -1,9 +1,10 @@
-import SignUpForm from "@/auth/nextjs/components/SignUpForm";
+import SignInForm from "@/auth/nextjs/components/SignInForm";
+// import SignUpForm from "@/auth/nextjs/components/SignUpForm";
 
 export default function Home() {
   return (
     <div>
-      <SignUpForm />
+      <SignInForm />
     </div>
   );
 }
