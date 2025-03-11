@@ -8,13 +8,27 @@ function SignUpForm() {
         password: ''
     });
 
-    const handleChange = () => {
-
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFromData({
+            ...formData, [name]: value
+        })
     }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log("Button pressed")
+        // reset form after pressing submit
+        setFromData({
+            name:'',
+            email: '',
+            password: ''
+        });
+    };
 
   return (
     <>
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
             <h2>Sign Up</h2>
             <input 
                 type="text"
