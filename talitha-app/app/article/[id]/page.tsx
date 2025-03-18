@@ -1,10 +1,14 @@
+"use client";
+
+import { useParams } from "next/navigation";
 import christianArticles  from "../../../data";
 
-export default function ArticleDetail({ params }: { params: { id: string } }) {
+export default function ArticleDetail() {
     // find the article by ID
-    const article = christianArticles.find ((item) => {
-        return item.id === parseInt(params.id)
-    })
+    const params = useParams();
+
+    const { id } =   params;
+    const article = christianArticles.find ((item) => item.id === parseInt(id as string))
     
     if (!article) {
         return <div>Article not found</div>
