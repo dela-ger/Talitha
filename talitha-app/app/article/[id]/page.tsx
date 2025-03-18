@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import christianArticles  from "../../../data";
-
+// checking git 
 export default function ArticleDetail() {
     // find the article by ID
     const params = useParams();
