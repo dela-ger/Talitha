@@ -4,8 +4,17 @@ import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import Link from 'next/link';
 
+// Define the type for an article
+interface Article {
+    id: number;
+    title: string;
+    content: string;
+    author: string;
+    date: string;
+}
 
-function SearchBox({ data }) {
+
+function SearchBox({ data }: { data: Article[] }) {
     const [query, setQuery] = useState("");
 
     // state to store the filtered search results
@@ -22,7 +31,7 @@ function SearchBox({ data }) {
 
     // filter data bsed on query this is case insensitive
     const filtered = data.filter((item) => 
-        item.toLowerCase().includes(value.toLowerCase())
+        item.title.toLowerCase().includes(value.toLowerCase())
     );
 
     setFilteredResults(filtered)

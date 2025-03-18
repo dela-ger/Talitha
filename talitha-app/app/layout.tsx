@@ -12,6 +12,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import './globals.css'
 import SearchBox from './components/SearchBox'
+import christianArticles from '@/data'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -67,7 +68,7 @@ export default function RootLayout({
             </SignedIn>
 
             <div className='z-50 ml-auto'>
-             <SearchBox />
+             <SearchBox data={christianArticles} />
             </div>
             
           </header>
