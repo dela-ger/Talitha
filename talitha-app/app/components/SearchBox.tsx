@@ -18,7 +18,7 @@ function SearchBox({ data }: { data: Article[] }) {
     const [query, setQuery] = useState("");
 
     // state to store the filtered search results
-    const [filteredResults, setFilteredResults] = useState([]);
+    const [filteredResults, setFilteredResults] = useState<Article[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
