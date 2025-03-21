@@ -40,7 +40,7 @@ function SearchBox({ data }: { data: Article[] }) {
 
   return (
     <>
-        <div className='relative w-full max-w-md mx-auto border border-red-500'>
+        <div className='relative w-full max-w-md mx-auto'>
             <div className="relative">
                 <input className='w-full px-4py-2 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pl-10'
                     type="text" 

@@ -1,3 +1,5 @@
+// "use client"
+
 import { type Metadata } from 'next'
 import {
   ClerkProvider,
@@ -13,6 +15,7 @@ import Link from 'next/link'
 import './globals.css'
 import SearchBox from './components/SearchBox'
 import christianArticles from '@/data'
+import ArticleProvider  from "../app/context/ArticleContext"
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -39,47 +42,50 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        
-          <header className="flex items-center p-4 gap-4 h-16">
-            <div>
-              <Link href="/">
-                <Image 
-                  src="/images/talitha_logo4(1).png"
-                  width={100}
-                  height={100}
-                  alt='logo talitha'
-                />
-              </Link>
-            </div>
-            <SignedOut>
-              <div className="z-50 p-4 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer">
-                <SignInButton />
+        <div>
+            <header className="flex items-center p-4 gap-4 h-16 mr-40 ml-40">
+              <div>
+                <Link href="/">
+                  <Image 
+                    src="/images/talitha_logo4(1).png"
+                    width={100}
+                    height={100}
+                    alt='logo talitha'
+                  />
+                </Link>
               </div>
+              <SignedOut>
+                <div className="z-50 p-4 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer">
+                  <SignInButton />
+                </div>
 
-              <div className="z-50 p-4 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer">
-                <SignUpButton />
+                <div className="z-50 p-4 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer">
+                  <SignUpButton />
+                </div>
+              </SignedOut>
+              <SignedIn>
+              <div className="z-50">
+                <UserButton />
               </div>
-            </SignedOut>
-            <SignedIn>
-            <div className="z-50">
-              <UserButton />
-            </div>
+                
+              </SignedIn>
+
+              <div className='flex justify-center items-center z-50 ml-auto gap-1.5'>
+                <span className=''>
+                <Link href="./about">About Us </Link>
+                </span>
+                <span className="flex justify-center items-center">
+                <SearchBox data={christianArticles} />
+                </span>
               
-            </SignedIn>
-
-            <div className='flex justify-center items-center z-50 ml-auto gap-1.5'>
-              <span className='border border-red-500'>
-               <Link href="./about">About Us </Link>
-              </span>
-              <span className="flex justify-center items-center border border-red-500">
-              <SearchBox data={christianArticles} />
-              </span>
-             
-            </div>
-            
-          </header>
+              </div>
+              
+            </header>
+        </div>
+            <ArticleProvider>
+              {children}  
+            </ArticleProvider>        
           
-          {children}
         </body>
       </html>
     </ClerkProvider>
