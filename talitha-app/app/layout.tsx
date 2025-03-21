@@ -68,10 +68,10 @@ export default function RootLayout({
             </SignedIn>
 
             <div className='flex justify-center items-center z-50 ml-auto gap-1.5'>
-              <span className='border border-red-500'>
+              <span className=''>
                <Link href="./about">About Us </Link>
               </span>
-              <span className="flex justify-center items-center border border-red-500">
+              <span className="flex justify-center items-center">
               <SearchBox data={christianArticles} />
               </span>
              
