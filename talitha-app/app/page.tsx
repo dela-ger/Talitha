@@ -7,7 +7,10 @@ export default function Home() {
     <>
       <div>
         <Hero />
-        <ArticleCard />
+        <div className="mr-40 ml-40">
+          <ArticleCard />
+        </div>
+        
       </div>
     </>
     

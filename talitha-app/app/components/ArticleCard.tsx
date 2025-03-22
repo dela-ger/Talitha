@@ -8,7 +8,10 @@ export default function ArticleCard() {
   return (
     <>
         <div>
-          <h1 className='text-4xl'>Recent Article</h1>
+          <div>
+            <h1 className='text-4xl'>Recent Article</h1>
+          </div>
+          
             {articles.map((article) => (
               <div key={article.id}>
                 <h2>{article.title}</h2>
