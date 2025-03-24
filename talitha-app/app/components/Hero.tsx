@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Hero() {
     return (
         <div className="relative min-h-screen flex items-center justify-center">
@@ -9,23 +11,23 @@ export default function Hero() {
 
             {/* Hero Content */}
             <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-                {/* Logo/Image (uncomment when ready) */}
-                {/* <div className="mb-8 max-w-xs mx-auto sm:max-w-sm md:max-w-md">
+                
+                <div className="mb-8 max-w-xs mx-auto sm:max-w-sm md:max-w-md">
                     <Image 
                         src="/images/talitha_bg1.png"
                         width={400}
-                        height={300}
+                        height={100}
                         alt="Talitha"
                         className="w-full h-auto"
                     />
-                </div> */}
+                </div>
 
                 {/* Text Content */}
-                <h1 className="text-4xl font-bold text-white mb-4 sm:mb-6 
+                <h4 className="text-4xl font-bold text-white mb-4 sm:mb-6 
                              sm:text-5xl md:text-6xl lg:text-7xl 
                              leading-tight md:leading-snug">
                     Growing in Faith, Together in Christ
-                </h1>
+                </h4>
                 
                 <p className="text-lg text-gray-200 mb-8 sm:text-xl md:text-2xl 
                             md:mb-12 max-w-2xl mx-auto 
