@@ -28,8 +28,8 @@ const Footer = () => {
               <div className="text-gray-400 space-y-2">
                 <p>123 Faith Avenue</p>
                 <p>Grace City, GC 12345</p>
-                <p>Email: info@example.com</p>
-                <p>Phone: (123) 456-7890</p>
+                <p>Email: info@talitha.com</p>
+                <p>Phone: (233) 456-7890</p>
               </div>
             </div>
           </div>
@@ -38,7 +38,7 @@ const Footer = () => {
           <div className="border-t border-gray-800 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
               <div className="mb-4 md:mb-0">
-                © {new Date().getFullYear()} Your Church Name. All rights reserved.
+                © {new Date().getFullYear()} Talitha. All rights reserved.
               </div>
               <div className="flex space-x-4">
                 <a href="#" className="hover:text-white transition-colors">
