@@ -14,6 +14,7 @@ import './globals.css'
 import SearchBox from './components/SearchBox'
 import christianArticles from '@/data'
 import ArticleProvider  from "../app/context/ArticleContext"
+import Footer from './components/Footer'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -83,7 +84,7 @@ export default function RootLayout({
             <ArticleProvider>
               {children}  
             </ArticleProvider>        
-          
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
