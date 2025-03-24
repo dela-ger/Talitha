@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div>
         <Hero />
-        <div className="mr-40 ml-40">
+        <div className="mt-20 mr-40 ml-40">
           <ArticleCard />
         </div>
         
