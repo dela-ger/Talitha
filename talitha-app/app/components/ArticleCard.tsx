@@ -1,27 +1,63 @@
 "use client"
 import React from 'react';
 import { useArticles } from '../context/ArticleContext';
+import Image from 'next/image';
 
 export default function ArticleCard() {
-  const { articles } = useArticles()
+  const { articles } = useArticles();
 
   return (
-    <>
-        <div>
-          <div className='flex justify-center items-center mb-20'>
-            <h1 className='text-4xl'>Recent Article</h1>
-          </div>
-          <div className='flex flex-wrap justify-around border border-red-500'>
-            {articles.map((article) => (
-                <div key={article.id} className='border border-red-500 w-100 h-52'  >
-                  <h2>{article.title}</h2>
-                  <p>{article.content.substring(0, 80)}...</p>
-                  <p>{article.author}</p>
-                </div>
-              ) )}
-          </div>
-            
-        </div>
-    </>
-  )
+    <div className="py-8 px-4 sm:py-12 sm:px-6 lg:px-8 xl:px-10">
+      <div className="text-center mb-12 sm:mb-16">
+        <h1 className="text-3xl font-bold text-gray-900 mb-3 sm:text-4xl sm:mb-4">
+          Recent Articles
+        </h1>
+        <p className="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">
+          Explore our latest teachings and spiritual insights
+        </p>
+      </div>
+      
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-8">
+        {articles.map((article) => (
+          <article 
+            key={article.id}
+            className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg 
+                     transition-shadow duration-300 flex flex-col"
+          >
+            {/* Image Container with Aspect Ratio */}
+            <div className="relative h-48 w-full sm:h-52 md:h-48 lg:h-56">
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                priority={false}
+              />
+            </div>
+
+            {/* Content Container */}
+            <div className="p-4 sm:p-6 flex-1 flex flex-col">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 
+                            sm:text-xl lg:text-lg xl:text-xl">
+                {article.title}
+              </h2>
+              
+              <p className="text-gray-600 line-clamp-3 mb-4 text-sm 
+                           sm:text-base lg:text-sm xl:text-base flex-1">
+                {article.content}
+              </p>
+
+              {/* Author & Date */}
+              <div className="flex flex-col space-y-1 sm:flex-row sm:justify-between 
+                            sm:items-center sm:space-y-0 text-xs sm:text-sm">
+                <span className="text-gray-500 font-medium">{article.author}</span>
+                <span className="text-gray-400">{article.date}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
 }
