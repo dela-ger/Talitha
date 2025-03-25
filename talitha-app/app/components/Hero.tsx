@@ -10,7 +10,7 @@ export default function Hero() {
             </div>
 
             {/* Hero Content */}
-            <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div className="relative text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
                 
                 <div className="mb-8 max-w-xs mx-auto sm:max-w-sm md:max-w-md">
                     <Image 

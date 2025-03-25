@@ -29,7 +29,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Talitha',
   description: 'A web app to bring people closer to God',
-  
 }
 
 export default function RootLayout({
@@ -41,50 +40,69 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div>
-            <header className="flex items-center p-4 gap-4 h-16 mr-40 ml-40">
-              <div>
-                <Link href="/">
+          <div className="flex flex-col min-h-screen">
+            <header className="flex flex-wrap items-center justify-between px-4 sm:px-6 lg:px-8 py-4 gap-4">
+              {/* Logo Section */}
+              <div className="flex items-center flex-shrink-0">
+                <Link href="/" className="hover:opacity-90 transition-opacity">
                   <Image 
                     src="/images/talitha_logo4(1).png"
                     width={100}
                     height={100}
-                    alt='logo talitha'
+                    alt='Talitha Logo'
+                    className="w-16 h-auto sm:w-20 lg:w-24"
                   />
                 </Link>
               </div>
-              <SignedOut>
-                <div className="z-50 p-4 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer">
-                  <SignInButton />
-                </div>
 
-                <div className="z-50 p-4 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer">
-                  <SignUpButton />
-                </div>
-              </SignedOut>
-              <SignedIn>
-              <div className="z-50">
-                <UserButton />
-              </div>
+              {/* Auth Buttons */}
+              <div className="flex items-center gap-2 order-last sm:order-none z-30">
+                <SignedOut>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <div className="p-2 sm:p-3 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer text-sm sm:text-base hover:bg-lime-400 transition-colors">
+                      <SignInButton />
+                    </div>
+                    <div className="p-2 sm:p-3 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer text-sm sm:text-base hover:bg-lime-400 transition-colors">
+                      <SignUpButton />
+                    </div>
+                  </div>
+                </SignedOut>
                 
-              </SignedIn>
-
-              <div className='flex justify-center items-center z-50 ml-auto gap-1.5'>
-                <span className=''>
-                <Link href="./about">About Us </Link>
-                </span>
-                <span className="flex justify-center items-center">
-                <SearchBox data={christianArticles} />
-                </span>
-              
+                <SignedIn>
+                  <div className="z-50">
+                    <UserButton />
+                  </div>
+                </SignedIn>
               </div>
-              
+
+              {/* Navigation & Search */}
+              <div className="flex flex-1 justify-end items-center gap-3 sm:gap-4 lg:gap-6 w-full sm:w-auto">
+                <nav className="hidden sm:flex items-center gap-3 lg:gap-4">
+                  <Link 
+                    href="/market" 
+                    className="text-sm lg:text-base hover:text-lime-600 transition-colors"
+                  >
+                    Market
+                  </Link>
+                  <Link 
+                    href="/about" 
+                    className="text-sm lg:text-base hover:text-lime-600 transition-colors"
+                  >
+                    About Us
+                  </Link>
+                </nav>
+                <div className="flex-grow sm:flex-grow-0 max-w-xs lg:max-w-md w-full z-10">
+                  <SearchBox data={christianArticles} />
+                </div>
+              </div>
             </header>
-        </div>
+
             <ArticleProvider>
-              {children}  
-            </ArticleProvider>        
-          <Footer />
+              <main className="flex-1">{children}</main>
+            </ArticleProvider>
+
+            <Footer />
+          </div>
         </body>
       </html>
     </ClerkProvider>
