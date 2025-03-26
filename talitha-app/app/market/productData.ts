@@ -4,7 +4,7 @@ const productsData = [
       name: "Bible (King James Version)",
       description: "A Holy Bible in King James Version with a leather cover.",
       price: 20,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Books",
     },
     {
@@ -12,7 +12,7 @@ const productsData = [
       name: "Christian Devotional Journal",
       description: "A guided journal to deepen your faith through daily reflections.",
       price: 15,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Books",
     },
     {
@@ -20,7 +20,7 @@ const productsData = [
       name: "Wooden Cross Necklace",
       description: "Handcrafted wooden cross necklace as a symbol of faith.",
       price: 10,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Accessories",
     },
     {
@@ -28,7 +28,7 @@ const productsData = [
       name: "Worship Music CD",
       description: "A collection of the most inspiring Christian worship songs.",
       price: 12,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Music",
     },
     {
@@ -36,7 +36,7 @@ const productsData = [
       name: "Christian Wall Art",
       description: "Beautiful canvas wall art with Bible verses and Christian quotes.",
       price: 25,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Home Decor",
     },
     {
@@ -44,7 +44,7 @@ const productsData = [
       name: "Prayer Candle Set",
       description: "A set of scented candles perfect for meditation and prayer.",
       price: 18,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Home Decor",
     },
     {
@@ -52,7 +52,7 @@ const productsData = [
       name: "Faith-Based T-Shirt",
       description: "Soft cotton t-shirt with an inspirational Bible verse print.",
       price: 22,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Clothing",
     },
     {
@@ -60,7 +60,7 @@ const productsData = [
       name: "Christian Sticker Pack",
       description: "A pack of faith-based stickers for your Bible, laptop, or journal.",
       price: 8,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Accessories",
     },
     {
@@ -68,7 +68,7 @@ const productsData = [
       name: "Holy Land Anointing Oil",
       description: "Authentic anointing oil from the Holy Land, made with frankincense & myrrh.",
       price: 30,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Religious Items",
     },
     {
@@ -76,7 +76,7 @@ const productsData = [
       name: "Children’s Bible Storybook",
       description: "Illustrated Bible stories designed for young readers.",
       price: 18,
-      image: "https://via.placeholder.com/300",
+      image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       category: "Books",
     },
   ];
