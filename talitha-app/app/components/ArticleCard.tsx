@@ -2,6 +2,7 @@
 import React from 'react';
 import { useArticles } from '../context/ArticleContext';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ArticleCard() {
   const { articles } = useArticles();
@@ -18,7 +19,7 @@ export default function ArticleCard() {
       </div>
       
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:gap-8">
-        {articles.map((article) => (
+        {articles.slice(0, 3).map((article) => (
           <article 
             key={article.id}
             className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg 
@@ -57,6 +58,17 @@ export default function ArticleCard() {
             </div>
           </article>
         ))}
+      </div>
+
+      {/* More Articles Button */}
+      <div className="mt-12 flex justify-center">
+        <Link 
+          href="/article"
+          className="bg-lime-600 text-white px-6 py-3 rounded-lg hover:bg-lime-700 
+                   transition-colors text-sm sm:text-base"
+        >
+          Explore More Articles
+        </Link>
       </div>
     </div>
   );
