@@ -31,7 +31,7 @@ export default function ProductDetail() {
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    {/* Image Gallery */}
+                    {/* Product Image */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
                         <div className="space-y-4">
                             <div className="relative aspect-square rounded-xl overflow-hidden">

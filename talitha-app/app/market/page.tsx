@@ -6,7 +6,7 @@ export default function Market() {
 
     <>
       <div className='flex justify-center items-center'>
-                <h1>Find your chritian Product here</h1>
+                <h1>Find your christian Product here</h1>
       </div>
       <ProductCard />
     </>
