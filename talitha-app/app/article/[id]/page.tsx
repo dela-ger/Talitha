@@ -23,7 +23,7 @@ export default function ArticleDetail() {
         {/* Back Button */}
         <div className="mb-4 px-6 pt-6">
           <Link 
-            href="/" 
+            href="/article" 
             className="text-gray-600 hover:text-lime-600 transition-colors flex items-center"
           >
             <span className="mr-1">←</span>
