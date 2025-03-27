@@ -16,6 +16,7 @@ import christianArticles from '@/data'
 import ArticleProvider  from "../app/context/ArticleContext"
 import Footer from './components/Footer'
 import ProductProvider from './context/ProductContext'
+import CheckoutProvider from './context/CheckoutContext'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -97,13 +98,15 @@ export default function RootLayout({
                 </div>
               </div>
             </header>
-            <ProductProvider>
-                <ArticleProvider>
-                  <main className="flex-1">{children}</main>
-                </ArticleProvider>
-            </ProductProvider>
             
-
+            <CheckoutProvider>
+              <ProductProvider>
+                  <ArticleProvider>
+                    <main className="flex-1">{children}</main>
+                  </ArticleProvider>
+              </ProductProvider>
+            </CheckoutProvider>
+            
             <Footer />
           </div>
         </body>
