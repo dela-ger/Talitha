@@ -3,11 +3,13 @@ import { useParams } from "next/navigation";
 import productsData from "../productData";
 import Image from "next/image";
 import Link from "next/link";
+import { useCheckout } from "@/app/context/CheckoutContext";
 
 export default function ProductDetail() {
     const params = useParams();
     const { id } = params;
     const product = productsData.find((item) => item.id === parseInt(id as string));
+    const { addItem } = useCheckout()!;
 
     if (!product) {
         return (
@@ -15,6 +17,16 @@ export default function ProductDetail() {
                 Product not found
             </div>
         );
+    }
+
+    // handle adding to cart
+    const handleAddToCart = () => {
+        addItem({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1
+        })
     }
 
     return (
@@ -74,8 +86,11 @@ export default function ProductDetail() {
 
                             {/* Action Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <button className="flex-1 bg-lime-600 text-white py-4 rounded-lg hover:bg-lime-700 transition-colors">
-                                    Purchase Item - GH₵{product.price}
+                                <button 
+                                    onClick={handleAddToCart}
+                                    className="flex-1 bg-lime-600 text-white py-4 rounded-lg hover:bg-lime-700 transition-colors"
+                                >
+                                    Add to Cart - GH₵{product.price}
                                 </button>
                                 <button className="flex-1 border-2 border-lime-600 text-lime-700 py-4 rounded-lg hover:bg-lime-50 transition-colors">
                                     Ask Question
@@ -85,8 +100,8 @@ export default function ProductDetail() {
                             {/* Scripture Section */}
                             <div className="pt-6 mt-6 border-t border-gray-100">
                                 <p className="text-gray-600 italic text-center">
-                                    "Each of you should use whatever gift you have received to serve others, 
-                                    as faithful stewards of God's grace in its various forms."
+                                    &quot;Each of you should use whatever gift you have received to serve others, 
+                                    as faithful stewards of God&lsquo;s grace in its various forms.&quot;
                                     <br />
                                     <span className="not-italic font-semibold text-lime-700">
                                         1 Peter 4:10

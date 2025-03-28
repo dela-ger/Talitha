@@ -17,6 +17,7 @@ import ArticleProvider  from "../app/context/ArticleContext"
 import Footer from './components/Footer'
 import ProductProvider from './context/ProductContext'
 import CheckoutProvider from './context/CheckoutContext'
+import CartLink from './components/CartLink'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -42,6 +43,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <CheckoutProvider>
           <div className="flex flex-col min-h-screen">
             <header className="flex flex-wrap items-center justify-between px-4 sm:px-6 lg:px-8 py-4 gap-4">
               {/* Logo Section */}
@@ -92,6 +94,7 @@ export default function RootLayout({
                   >
                     About Us
                   </Link>
+                  <CartLink />
                 </nav>
                 <div className="flex-grow sm:flex-grow-0 max-w-xs lg:max-w-md w-full z-10">
                   <SearchBox data={christianArticles} />
@@ -99,16 +102,17 @@ export default function RootLayout({
               </div>
             </header>
             
-            <CheckoutProvider>
+            
               <ProductProvider>
-                  <ArticleProvider>
-                    <main className="flex-1">{children}</main>
-                  </ArticleProvider>
+                <ArticleProvider>
+                  <main className="flex-1">{children}</main>
+                </ArticleProvider>
               </ProductProvider>
-            </CheckoutProvider>
+            
             
             <Footer />
           </div>
+          </CheckoutProvider>
         </body>
       </html>
     </ClerkProvider>

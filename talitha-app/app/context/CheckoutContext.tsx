@@ -38,5 +38,9 @@ export default function CheckoutProvider( {children}: { children: React.ReactNod
 }
 
 export function useCheckout() {
-    return useContext(CheckoutContext)
-}
+    const context = useContext(CheckoutContext)
+    if (!context) {
+      throw new Error('useCheckout must be used within CheckoutProvider')
+    }
+    return context
+  }
