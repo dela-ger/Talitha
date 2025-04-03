@@ -1,9 +1,10 @@
 import React from 'react'
+import ArticleList from '../components/ArticleList'
 
-function page() {
+export default function Article() {
   return (
-    <div>page</div>
+    <>
+      <ArticleList />
+    </>
   )
 }
-
-export default page
