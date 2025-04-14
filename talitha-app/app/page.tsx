@@ -1,5 +1,6 @@
 // import Link from "next/link";
 import ArticleCard from "./components/ArticleCard";
+import FaithTags from "./components/FaithTags";
 import Hero from "./components/Hero";
 import TicketEventCard from "./components/TicketEventCard";
 
@@ -8,6 +9,8 @@ export default function Home() {
     <>
       <div>
         <Hero />
+
+          <FaithTags />
         <div className="mt-20 mr-40 ml-40">
           <ArticleCard />
 
