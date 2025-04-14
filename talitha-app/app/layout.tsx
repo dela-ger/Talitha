@@ -94,6 +94,12 @@ export default function RootLayout({
                   >
                     About Us
                   </Link>
+                  <Link 
+                    href="/ticket" 
+                    className="text-sm lg:text-base hover:text-lime-600 transition-colors"
+                  >
+                    Events
+                  </Link>
                   <CartLink />
                 </nav>
                 <div className="flex-grow sm:flex-grow-0 max-w-xs lg:max-w-md w-full z-10">
