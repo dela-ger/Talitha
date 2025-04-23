@@ -17,7 +17,7 @@ export default function Home() {
         </div>
         
         <div className="">
-          <TicketEventCard />
+          <TicketEventCard limit={3}/>
 
         </div>
         
