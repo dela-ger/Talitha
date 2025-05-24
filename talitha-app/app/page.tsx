@@ -1,5 +1,6 @@
 import ArticleCard from "./components/ArticleCard";
 import FaithTags from "./components/FaithTags";
+import FindHopePage from "./components/FindHope";
 import Hero from "./components/Hero";
 import TicketEventCard from "./components/TicketEventCard";
 import Link from "next/link";
@@ -11,6 +12,8 @@ export default function Home() {
         <Hero />
 
           <FaithTags />
+
+          <FindHopePage />
         <div className="mt-15 mr-40 ml-40">
           <ArticleCard />
 
