@@ -41,31 +41,23 @@ function SearchBox({ data }: { data: Article[] }) {
   return (
     <>
         <div className='relative w-full max-w-md mx-auto'>
-            <div className="relative">
-                <input className='w-full px-4py-2 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pl-10'
+            <div className="relative w-full">
+                <input className='w-full border border-gray-300 rounded-lg p-2'
                     type="text" 
                     placeholder='Search...'
                     value={query}
                     onChange={handleChange}
                 />
-                <Search className='absolute left-3 top-0.5 text-gray-400 w-5 h-5'/>
+                <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                    {filteredResults.map((result) => (
+                        <div key={result.id} className="p-2 hover:bg-gray-100">
+                            <Link href={`/article/${result.id}`}>
+                                {result.title}
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
-
-                {filteredResults.length > 0 && (
-            <ul className="absolute left-0 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg">
-            {filteredResults.map((result) => (
-                <li
-                key={result.id}
-                className="px-4 py-2 cursor-pointer hover:bg-blue-100 transition duration-200"
-                >
-                  <Link href={`/article/${result.id}`}>
-                        {result.title}
-                  </Link>      
-                    
-                </li>
-            ))}
-            </ul>
-        )}
         </div>   
     </>
   )
