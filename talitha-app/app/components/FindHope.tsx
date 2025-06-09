@@ -1,7 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import FindHopeContact from './FindHopeContact'
+// import Link from 'next/link'
+// import FindHopeContact from './FindHopeContact'
 
 export default function FindHopeSection() {
   return (
@@ -63,7 +65,7 @@ export default function FindHopeSection() {
         </div>
 
         {/* Call to Action Section */}
-        <div className="rounded-2xl bg-[#f8fafc] px-8 py-12 text-center shadow-inner sm:px-16">
+        {/* <div className="rounded-2xl bg-[#f8fafc] px-8 py-12 text-center shadow-inner sm:px-16">
           <div className="mx-auto max-w-3xl space-y-6">
             <h2 className="text-3xl font-bold text-[#0d161c] sm:text-4xl">
               You&apos;re Not Alone
@@ -82,7 +84,8 @@ export default function FindHopeSection() {
               Available 24/7 • Confidential • Faith-Based
             </p>
           </div>
-        </div>
+        </div> */}
+        < FindHopeContact />
       </div>
     </section>
   )
