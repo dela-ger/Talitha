@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function TicketEventCard({limit}: {limit?: number}) {
   const displayedEvents = limit ? events.slice(0, limit) : events;
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8 py-8 ml-40 mr-40">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8 py-8 mx-4 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-40">
       {displayedEvents.map(event => (
         <div 
           key={event.id}

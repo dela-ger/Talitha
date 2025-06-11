@@ -13,7 +13,7 @@ import Link from 'next/link'
 import './globals.css'
 import SearchBox from './components/SearchBox'
 import christianArticles from '@/data'
-import ArticleProvider  from "../app/context/ArticleContext"
+import ArticleProvider from '../app/context/ArticleContext'
 import Footer from './components/Footer'
 import ProductProvider from './context/ProductContext'
 import CheckoutProvider from './context/CheckoutContext'
@@ -41,83 +41,70 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <CheckoutProvider>
-          <div className="flex flex-col min-h-screen">
-            <header className="flex flex-wrap items-center justify-between px-4 sm:px-6 lg:px-8 py-4 gap-4">
-              {/* Logo Section */}
-              <div className="flex items-center flex-shrink-0">
-                <Link href="/" className="hover:opacity-90 transition-opacity">
-                  <Image 
-                    src="/images/talitha_logo4(1).png"
-                    width={100}
-                    height={100}
-                    alt='Talitha Logo'
-                    className="w-16 h-auto sm:w-20 lg:w-24"
-                  />
-                </Link>
-              </div>
+      <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className="bg-gray-50 antialiased min-h-screen flex flex-col text-[#101418] font-sans">
+          <CheckoutProvider>
+            <div className="flex flex-col min-h-screen">
+              <header className="flex items-center justify-between border-b border-[#eaedf1] px-10 py-3">
+                {/* Left Section: Logo + Nav */}
+                <div className="flex items-center gap-8">
+                  <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+                    <Image
+                      src="/images/talitha_logo4(1).png"
+                      width={100}
+                      height={100}
+                      alt="Talitha Logo"
+                      className="w-16 sm:w-20 lg:w-24 h-auto"
+                    />
+                  </Link>
 
-              {/* Auth Buttons */}
-              <div className="flex items-center gap-2 order-last sm:order-none z-30">
-                <SignedOut>
-                  <div className="flex flex-col sm:flex-row gap-2">
-                    <div className="p-2 sm:p-3 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer text-sm sm:text-base hover:bg-lime-400 transition-colors">
-                      <SignInButton />
-                    </div>
-                    <div className="p-2 sm:p-3 bg-lime-300 text-white rounded-lg shadow-md cursor-pointer text-sm sm:text-base hover:bg-lime-400 transition-colors">
-                      <SignUpButton />
-                    </div>
-                  </div>
-                </SignedOut>
-                
-                <SignedIn>
-                  <div className="z-50">
-                    <UserButton />
-                  </div>
-                </SignedIn>
-              </div>
-
-              {/* Navigation & Search */}
-              <div className="flex flex-1 justify-end items-center gap-3 sm:gap-4 lg:gap-6 w-full sm:w-auto">
-                <nav className="hidden sm:flex items-center gap-3 lg:gap-4">
-                  <Link 
-                    href="/market" 
-                    className="text-sm lg:text-base hover:text-lime-600 transition-colors"
-                  >
-                    Market
-                  </Link>
-                  <Link 
-                    href="/about" 
-                    className="text-sm lg:text-base hover:text-lime-600 transition-colors"
-                  >
-                    About Us
-                  </Link>
-                  <Link 
-                    href="/ticket" 
-                    className="text-sm lg:text-base hover:text-lime-600 transition-colors"
-                  >
-                    Events
-                  </Link>
-                  <CartLink />
-                </nav>
-                <div className="flex-grow sm:flex-grow-0 max-w-xs lg:max-w-md w-full z-10">
-                  <SearchBox data={christianArticles} />
+                  <nav className="hidden md:flex items-center gap-6">
+                    <Link href="/market" className="text-sm font-medium hover:text-lime-600">
+                      Market
+                    </Link>
+                    <Link href="/about" className="text-sm font-medium hover:text-lime-600">
+                      About Us
+                    </Link>
+                    <Link href="/ticket" className="text-sm font-medium hover:text-lime-600">
+                      Events
+                    </Link>
+                    <CartLink />
+                  </nav>
                 </div>
-              </div>
-            </header>
-            
-            
+
+                {/* Right Section: Search + Auth */}
+                <div className="flex items-center gap-6">
+                  <div className="hidden sm:flex w-full max-w-xs lg:max-w-md">
+                    <SearchBox data={christianArticles} />
+                  </div>
+
+                  <SignedOut>
+                    <div className="flex gap-2">
+                      <div className="p-2 bg-lime-300 text-white rounded-xl shadow hover:bg-lime-400 transition">
+                        <SignInButton />
+                      </div>
+                      <div className="p-2 bg-lime-300 text-white rounded-xl shadow hover:bg-lime-400 transition">
+                        <SignUpButton />
+                      </div>
+                    </div>
+                  </SignedOut>
+
+                  <SignedIn>
+                    <div className="z-50">
+                      <UserButton />
+                    </div>
+                  </SignedIn>
+                </div>
+              </header>
+
               <ProductProvider>
                 <ArticleProvider>
                   <main className="flex-1">{children}</main>
                 </ArticleProvider>
               </ProductProvider>
-            
-            
-            <Footer />
-          </div>
+
+              <Footer />
+            </div>
           </CheckoutProvider>
         </body>
       </html>

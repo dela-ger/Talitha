@@ -27,7 +27,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, closeModal }) => {
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500"
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-lime-500"
             />
           </div>
           <div>
@@ -35,14 +35,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, closeModal }) => {
             <input
               type="email"
               placeholder="Your Email"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-blue-500"
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-lime-500"
             />
           </div>
           <div>
             <label className="block font-medium text-gray-700 mb-1">Message</label>
             <textarea
               placeholder="Your Message"
-              className="w-full border border-gray-300 rounded-lg p-3 min-h-[120px] focus:outline-none focus:border-blue-500"
+              className="w-full border border-gray-300 rounded-lg p-3 min-h-[120px] focus:outline-none focus:border-lime-500"
             />
           </div>
           <div className="flex justify-end">
