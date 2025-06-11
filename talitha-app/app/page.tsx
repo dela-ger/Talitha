@@ -14,10 +14,10 @@ export default function Home() {
           <FaithTags />
 
           <FindHopePage />
-        <div className="mt-15 mr-40 ml-40">
+        {/* <div className="mt-15 mr-40 ml-40"> */}
           <ArticleCard />
 
-        </div>
+        {/* </div> */}
         
         <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto text-center">

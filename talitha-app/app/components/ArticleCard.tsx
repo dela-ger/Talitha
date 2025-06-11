@@ -8,7 +8,7 @@ export default function ArticleCard() {
   const { articles } = useArticles();
 
   return (
-    <div className="py-8 px-4 sm:py-12 sm:px-6 lg:px-8 xl:px-10">
+    <div className="py-8 px-4 sm:py-12 sm:px-6 lg:px-8 xl:px-10" id='articles'>
       <div className="text-center mb-12 sm:mb-16">
         <h1 className="text-3xl font-bold text-gray-900 mb-3 sm:text-4xl sm:mb-4">
           Recent Articles
