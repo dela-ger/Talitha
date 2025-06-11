@@ -8,7 +8,7 @@ function ProductCard() {
     const { products } = useProduct();
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8 py-12 ml-40 mr-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8 py-12 mx-4 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-40">
             {products.map((product) => (
                 <Link 
                     key={product.id}

@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
-
 :root {
   --background: #ffffff;
   /* --foreground: #171717; */
 }
 
-@theme inline {
+:root {
   --color-background: var(--background);
   /* --color-foreground: var(--foreground); */
   --font-sans: var(--font-geist-sans);
@@ -27,7 +26,6 @@ body {
 }
 
 .container {
-  @apply ml-40 mr-40;
   margin-left: 10rem !important;
   margin-right: 10rem !important;
 }
