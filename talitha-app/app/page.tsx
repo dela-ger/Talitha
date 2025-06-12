@@ -2,6 +2,7 @@ import ArticleCard from "./components/ArticleCard";
 import FaithTags from "./components/FaithTags";
 import FindHopePage from "./components/FindHope";
 import Hero from "./components/Hero";
+// import Navbar from "./components/Nav";
 import TicketEventCard from "./components/TicketEventCard";
 import Link from "next/link";
 
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <div>
+        {/* <Navbar /> */}
         <Hero />
 
           <FaithTags />

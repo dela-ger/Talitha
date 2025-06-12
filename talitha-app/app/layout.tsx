@@ -17,7 +17,7 @@ import ArticleProvider from '../app/context/ArticleContext'
 import Footer from './components/Footer'
 import ProductProvider from './context/ProductContext'
 import CheckoutProvider from './context/CheckoutContext'
-import CartLink from './components/CartLink'
+import Navbar from './components/Nav'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -48,28 +48,16 @@ export default function RootLayout({
               <header className="flex items-center justify-between border-b border-[#eaedf1] px-10 py-3">
                 {/* Left Section: Logo + Nav */}
                 <div className="flex items-center gap-8">
-                  <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+                <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
                     <Image
                       src="/images/talitha_logo4(1).png"
-                      width={100}
-                      height={100}
+                      width={140} // increased from 100
+                      height={140}
                       alt="Talitha Logo"
-                      className="w-16 sm:w-20 lg:w-24 h-auto"
+                      className="w-24 sm:w-28 lg:w-32 h-auto drop-shadow-md"
                     />
-                  </Link>
-
-                  <nav className="hidden md:flex items-center gap-6">
-                    <Link href="/market" className="text-sm font-medium hover:text-lime-600">
-                      Market
-                    </Link>
-                    <Link href="/about" className="text-sm font-medium hover:text-lime-600">
-                      About Us
-                    </Link>
-                    <Link href="/ticket" className="text-sm font-medium hover:text-lime-600">
-                      Events
-                    </Link>
-                    <CartLink />
-                  </nav>
+                </Link>
+                  
                 </div>
 
                 {/* Right Section: Search + Auth */}
@@ -96,6 +84,7 @@ export default function RootLayout({
                   </SignedIn>
                 </div>
               </header>
+              <Navbar />
 
               <ProductProvider>
                 <ArticleProvider>
