@@ -106,9 +106,14 @@ export default function FaithTags() {
           transition={{ delay: 0.8 }}
           className="text-center mt-12"
         >
-          <button className="bg-lime-600 hover:bg-lime-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
-            Explore More Topics
-          </button>
+          <button
+  onClick={() => {
+    document.getElementById('articles')?.scrollIntoView({ behavior: 'smooth' })
+  }}
+  className="bg-lime-600 hover:bg-lime-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+>
+  Explore More Topics
+</button>
         </motion.div>
       </div>
     </section>
