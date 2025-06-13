@@ -5,18 +5,29 @@ import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const navLinks = [
+    { href: "/market", label: "Marketplace" },
+    { href: "/article", label: "Articles" },
+    { href: "/prayer-room", label: "Prayer Room" },
+    { href: "/about", label: "About" },
+    { href: "/ticket", label: "Events" },
+  ];
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center py-4">
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden sm:flex items-center space-x-8 text-sm font-medium">
-            <NavLink href="/market">Marketplace</NavLink>
-            <NavLink href="/ticket">Events</NavLink>
-            <NavLink href="/prayer-room">Prayer Room</NavLink>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="/contact">Contact</NavLink>
+          {/* Desktop Navigation - Centered with dividers */}
+          <div className="hidden sm:flex items-center space-x-8">
+            {navLinks.map((link, index) => (
+              <div key={index} className="flex items-center">
+                <NavLink href={link.href}>{link.label}</NavLink>
+                {index < navLinks.length - 1 && (
+                  <div className="ml-8 h-4 w-px bg-lime-200"></div>
+                )}
+              </div>
+            ))}
           </div>
 
           {/* Mobile Toggle */}
@@ -39,21 +50,15 @@ export default function Navbar() {
         {isOpen && (
           <div className="sm:hidden bg-lime-50 rounded-lg py-4 px-4 border border-lime-100 mt-2">
             <div className="flex flex-col space-y-3 text-center">
-              <MobileNavLink href="/market" onClick={() => setIsOpen(false)}>
-                Marketplace
-              </MobileNavLink>
-              <MobileNavLink href="/articles" onClick={() => setIsOpen(false)}>
-                Articles
-              </MobileNavLink>
-              <MobileNavLink href="/prayer-room" onClick={() => setIsOpen(false)}>
-                Prayer Room
-              </MobileNavLink>
-              <MobileNavLink href="/about" onClick={() => setIsOpen(false)}>
-                About
-              </MobileNavLink>
-              <MobileNavLink href="/contact" onClick={() => setIsOpen(false)}>
-                Contact
-              </MobileNavLink>
+              {navLinks.map((link, index) => (
+                <MobileNavLink 
+                  key={index} 
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </MobileNavLink>
+              ))}
             </div>
           </div>
         )}
@@ -65,7 +70,7 @@ export default function Navbar() {
 // Reusable NavLink component for desktop
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <Link href={href}>
-    <span className="text-lime-800 hover:text-lime-600 transition-colors cursor-pointer">
+    <span className="text-lime-800 hover:text-lime-600 transition-colors cursor-pointer text-sm font-medium px-2">
       {children}
     </span>
   </Link>

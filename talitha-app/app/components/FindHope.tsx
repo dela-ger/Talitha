@@ -10,6 +10,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/autoplay'
 import 'swiper/css/effect-fade'
 import { useRef, useState, useEffect } from 'react'
+import { stories } from '../data/stories' 
 
 export default function FindHopeSection() {
   const prevRef = useRef(null)
@@ -17,42 +18,8 @@ export default function FindHopeSection() {
   const [navigationReady, setNavigationReady] = useState(false)
 
   useEffect(() => {
-    // Delay setting navigation until refs are set
     setNavigationReady(true)
   }, [])
-
-  const stories = [
-    {
-      title: "Sarah's Journey to Peace",
-      text: "Sarah found solace and strength in her faith during a difficult time, leading her to a deeper understanding of God's love.",
-      image: 'https://images.unsplash.com/photo-1637849312643-fce4b6702a1a?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      slug: 'sarahs-journey'
-    },
-    {
-      title: "David's Path to Purpose",
-      text: "David discovered his purpose through prayer and reflection, finding guidance and direction in his life.",
-      image: 'https://images.unsplash.com/photo-1676807823421-1a6a6d280166?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      slug: 'davids-path'
-    },
-    {
-      title: "Community of Faith",
-      text: "Sharing experiences and supporting each other, this community found hope and encouragement in their shared faith.",
-      image: 'https://images.unsplash.com/photo-1681936490173-92b7bf63f264?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      slug: 'community-faith'
-    },
-    {
-      title: "Finding Light in Darkness",
-      text: "Through spiritual guidance, Michael overcame depression and found new meaning in his life.",
-      image: 'https://images.unsplash.com/photo-1604881991720-f91add269bed?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      slug: 'light-in-darkness'
-    },
-    {
-      title: "Healing Through Prayer",
-      text: "After a serious illness, Emily experienced remarkable recovery that strengthened her faith.",
-      image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1999&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      slug: 'healing-prayer'
-    }
-  ];
 
   return (
     <section className="relative min-h-screen bg-slate-50 font-['Newsreader',_'Noto_Sans',_sans-serif]">
@@ -117,7 +84,7 @@ export default function FindHopeSection() {
                       {story.text}
                     </p>
                     <Link
-                      href={`/stories/${story.slug}`}
+                      href={`/stories/${story.id}`}
                       className="inline-block bg-white text-[#0d161c] font-medium py-3 px-8 rounded-full hover:bg-opacity-90 transition-all duration-300 text-lg"
                     >
                       Read Full Story
