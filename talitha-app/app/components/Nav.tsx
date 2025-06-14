@@ -10,8 +10,8 @@ export default function Navbar() {
     { href: "/market", label: "Marketplace" },
     { href: "/article", label: "Articles" },
     { href: "/prayer-room", label: "Prayer Room" },
-    { href: "/about", label: "About" },
     { href: "/ticket", label: "Events" },
+    { href: "/about", label: "About" },
   ];
 
   return (

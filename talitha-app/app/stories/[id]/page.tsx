@@ -1,15 +1,28 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { stories } from './../../data/stories';
+import { supabase } from '@/lib/supabase';
+// import { stories } from './../../data/stories';
 
-export default function StoryPage({ params }: { params: { id: string } }) {
-  const story = stories.find((s) => s.id === parseInt(params.id));
+export default async function StoryPage({ params }: { params: { id: string } }) {
+  
+    const { data: story, error} = await supabase
+    .from('stories')
+    .select('*')
+    .eq('id', params.id)
+    .single();
+  
+    if (error) {
+      console.error('Error fetching story:', error);
+      return notFound();
+    }
+  
+    // const story = stories.find((s) => s.id === parseInt(params.id));
 
   if (!story) return notFound();
 
   // Split content into paragraphs
-  const paragraphs = story.content.split('\n\n');
+  const paragraphs: string[] = story.content.split('\n\n');
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-lime-50 font-['Newsreader','Noto_Sans',sans-serif]">
@@ -37,7 +50,7 @@ export default function StoryPage({ params }: { params: { id: string } }) {
           {/* Hero Image */}
           <div className="relative h-96 w-full">
             <Image
-              src={story.image}
+              src={story.image_url}
               alt={story.title}
               fill
               className="object-cover"
