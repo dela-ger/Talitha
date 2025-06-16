@@ -5,12 +5,55 @@ import Hero from "./components/Hero";
 // import Navbar from "./components/Nav";
 import TicketEventCard from "./components/TicketEventCard";
 import Link from "next/link";
+// use client supabase
+// import { useState, useEffect } from 'react'
+// import { supabase } from '@/lib/supabase'
+// import { User } from '@supabase/supabase-js'
+// import SignInModal from './components/SignInModal';
 
 export default function Home() {
+  // const [showModal, setShowModal] = useState(false)
+  // const [user, setUser] = useState<User | null>(null)
+  // Check for an active session on load
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     setUser(session?.user ?? null)
+  //   })
+
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setUser(session?.user ?? null)
+  //   })
+
+  //   return () => subscription.unsubscribe()
+  // }, [])
+
+  // const handleLogout = async () => {
+  //   await supabase.auth.signOut()
+  //   setUser(null)
+  // }
   return (
     <>
       <div>
         {/* <Navbar /> */}
+        {/* {user ? (
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowModal(true)}
+              className="bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              Sign In / Sign Up
+            </button>
+          )}
+
+          {showModal && <SignInModal onClose={() => setShowModal(false)} />} */}
         <Hero />
 
           <FaithTags />
