@@ -1,25 +1,39 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import FindHopeContact from './FindHopeContact'
-import Link from 'next/link'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Autoplay, EffectFade } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/autoplay'
-import 'swiper/css/effect-fade'
-import { useRef, useState, useEffect } from 'react'
-import { stories } from '../data/stories' 
+import Image from 'next/image';
+import FindHopeContact from './FindHopeContact';
+import Link from 'next/link';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-fade';
+import { useRef, useState, useEffect } from 'react';
+import { supabase } from '../../lib/supabase';
 
 export default function FindHopeSection() {
-  const prevRef = useRef(null)
-  const nextRef = useRef(null)
-  const [navigationReady, setNavigationReady] = useState(false)
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const [navigationReady, setNavigationReady] = useState(false);
+  const [stories, setStories] = useState<
+    {id: number ; created_at: string; title: string; excerpt: string; content: string; image_url: string; author: string }[]
+  >([]);
 
+  // Fetch stories dynamically from Supabase
   useEffect(() => {
-    setNavigationReady(true)
-  }, [])
+    async function fetchStories() {
+      const { data, error } = await supabase.from('stories').select('*');
+      console.log('Supabase query result:', { data, error }); // Debugging
+      if (error) {
+        console.error('Error fetching stories:', error);
+      } else {
+        setStories(data || []);
+      }
+    }
+    fetchStories();
+    setNavigationReady(true);
+  }, []);
 
   return (
     <section className="relative min-h-screen bg-slate-50 font-['Newsreader',_'Noto_Sans',_sans-serif]">
@@ -37,24 +51,24 @@ export default function FindHopeSection() {
       </div>
 
       <div className="relative w-full h-[80vh] max-h-[800px]">
-        {navigationReady && (
+        {navigationReady && stories.length > 0 ? (
           <Swiper
             modules={[Navigation, Autoplay, EffectFade]}
             effect="fade"
             fadeEffect={{ crossFade: true }}
             speed={1200}
             navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current
+              prevEl: prevRef.current || undefined,
+              nextEl: nextRef.current || undefined,
             }}
             autoplay={{
               delay: 7000,
               disableOnInteraction: false,
             }}
             onAutoplayTimeLeft={(swiper, time, progress) => {
-              const progressBar = document.getElementById('progress-bar')
+              const progressBar = document.getElementById('progress-bar');
               if (progressBar) {
-                progressBar.style.width = `${progress * 100}%`
+                progressBar.style.width = `${progress * 100}%`;
               }
             }}
             slidesPerView={1}
@@ -65,8 +79,8 @@ export default function FindHopeSection() {
               <SwiperSlide key={index} className="relative">
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src={story.image}
-                    alt={story.title}
+                    src={story.image_url || '/default-image.jpg'} // Updated to match `image_url`
+                    alt={story.title || 'Story Image'}
                     fill
                     className="object-cover"
                     sizes="100vw"
@@ -81,10 +95,10 @@ export default function FindHopeSection() {
                       {story.title}
                     </h3>
                     <p className="text-xl sm:text-2xl text-white mb-10 max-w-3xl mx-auto">
-                      {story.text}
+                      {story.excerpt} {/* Updated to match `excerpt` */}
                     </p>
                     <Link
-                      href={`/stories/${story.id}`}
+                      href={`/stories/${story.id}`} // Assuming you have a dynamic route for stories
                       className="inline-block bg-white text-[#0d161c] font-medium py-3 px-8 rounded-full hover:bg-opacity-90 transition-all duration-300 text-lg"
                     >
                       Read Full Story
@@ -94,6 +108,8 @@ export default function FindHopeSection() {
               </SwiperSlide>
             ))}
           </Swiper>
+        ) : (
+          <p className="text-center text-gray-500">No stories available at the moment.</p>
         )}
 
         {/* Progress Bar Timer */}
@@ -102,14 +118,22 @@ export default function FindHopeSection() {
         </div>
 
         {/* Navigation Arrows */}
-        <div ref={prevRef} className="hero-swiper-button-prev absolute left-4 top-1/2 z-30 -translate-y-1/2 cursor-pointer bg-white/30 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white/50 transition-all">
+        <div
+          ref={prevRef}
+          aria-label="Previous slide"
+          className="hero-swiper-button-prev absolute left-4 top-1/2 z-30 -translate-y-1/2 cursor-pointer bg-white/30 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white/50 transition-all"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </div>
-        <div ref={nextRef} className="hero-swiper-button-next absolute right-4 top-1/2 z-30 -translate-y-1/2 cursor-pointer bg-white/30 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white/50 transition-all">
+        <div
+          ref={nextRef}
+          aria-label="Next slide"
+          className="hero-swiper-button-next absolute right-4 top-1/2 z-30 -translate-y-1/2 cursor-pointer bg-white/30 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white/50 transition-all"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7-7-7-7" />
           </svg>
         </div>
       </div>
@@ -118,5 +142,5 @@ export default function FindHopeSection() {
         <FindHopeContact />
       </div>
     </section>
-  )
+  );
 }
