@@ -15,8 +15,78 @@ const faithTags = [
   "❤️ Exploring the depth of God's love — one article at a time.",
 ];
 
+const teachings = [
+  {
+    title: "Love Your Enemies",
+    verse: "Matthew 5:44",
+    content: "But I say to you, love your enemies and pray for those who persecute you.",
+    lesson: "True love extends even to those who oppose us. This is the radical love Jesus calls us to."
+  },
+  {
+    title: "Do Not Worry",
+    verse: "Matthew 6:34",
+    content: "Therefore do not worry about tomorrow, for tomorrow will worry about itself.",
+    lesson: "Trust God daily. Worry robs you of today’s peace."
+  },
+  {
+    title: "You Are the Light",
+    verse: "Matthew 5:14",
+    content: "You are the light of the world. A city set on a hill cannot be hidden.",
+    lesson: "Let your life shine with goodness so others see God's love through you."
+  },
+  {
+    title: "Ask, Seek, Knock",
+    verse: "Matthew 7:7",
+    content: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
+    lesson: "Persistent faith opens doors to God’s provision and wisdom."
+  },
+  {
+    title: "The Greatest Commandment",
+    verse: "Matthew 22:37-39",
+    content: "Love the Lord your God with all your heart... and love your neighbor as yourself.",
+    lesson: "Love is the core of every action and relationship in God's kingdom."
+  },
+  {
+    title: "Serve One Another",
+    verse: "Mark 10:45",
+    content: "The Son of Man came not to be served but to serve, and to give his life as a ransom for many.",
+    lesson: "Greatness in God's eyes is shown through humility and service."
+  },
+  {
+    title: "Peace Be Still",
+    verse: "Mark 4:39",
+    content: "He rebuked the wind and said to the sea, 'Peace! Be still!' And the wind ceased.",
+    lesson: "Even in life’s storms, Jesus brings peace that stills the soul."
+  },
+  {
+    title: "Forgive Others",
+    verse: "Matthew 6:14",
+    content: "If you forgive others their trespasses, your heavenly Father will also forgive you.",
+    lesson: "Forgiveness frees your heart and reflects the mercy of God."
+  },
+  {
+    title: "Let the Children Come",
+    verse: "Luke 18:16",
+    content: "Let the little children come to me, and do not hinder them, for to such belongs the kingdom of God.",
+    lesson: "Childlike faith and humility open the way to the heart of God."
+  },
+  {
+    title: "The Bread of Life",
+    verse: "John 6:35",
+    content: "I am the bread of life. Whoever comes to me shall not hunger, and whoever believes in me shall never thirst.",
+    lesson: "Only Jesus can truly satisfy the deep hunger of the soul."
+  }
+];
+
+
+
 export default function FaithTags() {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // new sermon added to the tags
+  const [showModal, setShowModal] = useState(false);
+const [selectedTeaching, setSelectedTeaching] = useState(teachings[0]);
+
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -83,7 +153,9 @@ export default function FaithTags() {
                 ${index === activeIndex ? 'ring-2 ring-lime-400' : ''}
                 hover:border-lime-300 cursor-pointer
               `}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                setSelectedTeaching(teachings[index % teachings.length]); // loop if needed
+                setShowModal(true);}}
             >
               <div className="flex items-start">
                 <div className="text-2xl mr-3 mt-0.5">{tag.split(' ')[0]}</div>
@@ -115,6 +187,59 @@ export default function FaithTags() {
   Explore More Topics
 </button>
         </motion.div>
+        
+        {/* sermon modal */}
+
+        {showModal && selectedTeaching && (
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
+    <div className="bg-gradient-to-br from-lime-50 to-emerald-50 p-8 rounded-2xl max-w-md mx-auto shadow-xl border border-lime-200 relative transform transition-transform duration-300 scale-95 animate-in fade-in-90 zoom-in-90">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-lime-400 to-emerald-400 rounded-t-2xl"></div>
+      <div className="absolute top-4 right-4">
+        <button 
+          onClick={() => setShowModal(false)} 
+          className="text-lime-700 hover:text-emerald-600 transition-colors duration-200 bg-lime-100 hover:bg-lime-200 rounded-full p-1 w-8 h-8 flex items-center justify-center shadow-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Content */}
+      <div className="mt-2 text-center">
+        <div className="mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-lime-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+          </svg>
+        </div>
+        
+        <h3 className="text-2xl font-serif font-bold text-lime-800 mb-3 tracking-tight">
+          {selectedTeaching.title}
+        </h3>
+        
+        <div className="relative my-6 px-4">
+          <div className="absolute top-0 left-0 text-5xl text-lime-300 font-serif leading-none">“</div>
+          <p className="text-lg italic text-emerald-800 relative z-10 pl-6">
+            {selectedTeaching.content}
+          </p>
+          <div className="absolute bottom-0 right-0 text-5xl text-lime-300 font-serif leading-none -mb-2">”</div>
+        </div>
+        
+        <p className="text-sm font-medium text-lime-700 mb-1">
+          — {selectedTeaching.verse}
+        </p>
+        
+        <div className="mt-8 pt-6 border-t border-lime-200">
+          <p className="text-gray-700 font-medium text-base leading-relaxed">
+            {selectedTeaching.lesson}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
       </div>
     </section>
   );
