@@ -1,34 +1,65 @@
 "use client"
-import { useParams } from "next/navigation";
-import productsData from "../productData";
-import Image from "next/image";
-import Link from "next/link";
-import { useCheckout } from "@/app/context/CheckoutContext";
-import CartLink from "@/app/components/CartLink";
+import { useParams } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
+import { useCheckout } from "@/app/context/CheckoutContext"
+import CartLink from "@/app/components/CartLink"
+import { supabase } from "@/lib/supabase"
+import { Product } from "@/types"
+import { useEffect, useState } from "react"
 
 export default function ProductDetail() {
-    const params = useParams();
-    const { id } = params;
-    const product = productsData.find((item) => item.id === parseInt(id as string));
-    const { addItem } = useCheckout()!;
+    
+  const params = useParams();
+  const { id } = params;
+  const [product, setProduct] = useState<Product | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const { addItem } = useCheckout()!;
 
-    if (!product) {
-        return (
-            <div className="min-h-screen flex items-center justify-center text-xl text-gray-600 bg-lime-50">
-                Product not found
-            </div>
-        );
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsLoading(true)
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('id', parseInt(id as string))
+        .single()
+      
+      if (!error) {
+        setProduct(data as Product)
+      } else {
+        console.error('Error fetching product:', error)
+      }
+      setIsLoading(false)
     }
+    
+    if (id) fetchProduct()
+  }, [id])
 
-    const handleAddToCart = () => {
-        addItem({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            quantity: 1
-        })
-    }
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-lime-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-lime-600"></div>
+      </div>
+    )
+  }
 
+  if (!product) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-xl text-gray-600 bg-lime-50">
+        Product not found
+      </div>
+    );
+  }
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1
+    })
+  }
     return (
         <div className="min-h-screen bg-gradient-to-b from-lime-50 to-amber-50 py-8 px-4 sm:px-6">
             <CartLink />
@@ -52,7 +83,7 @@ export default function ProductDetail() {
                         <div className="space-y-4">
                             <div className="relative aspect-square rounded-xl overflow-hidden border border-lime-100">
                                 <Image
-                                    src={product.image}
+                                    src={product.image || "/placeholder-image.jpg"}
                                     alt={product.name}
                                     fill
                                     className="object-cover"

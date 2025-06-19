@@ -1,9 +1,35 @@
-import React from 'react';
+"use client"
+
+import React, { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
 import ProductCard from '../components/ProductCard';
 import CartLink from '../components/CartLink';
+import { Product } from '@/types'
 
 export default function Market() {
+  const [products, setProducts] = useState<Product[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setIsLoading(true)
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('created_at', { ascending: false })
+      
+      if (!error && data) {
+        setProducts(data as Product[])
+      } else {
+        console.error('Error fetching products:', error)
+      }
+      setIsLoading(false)
+    }
+    
+    fetchProducts()
+  }, [])
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-b from-lime-50 to-amber-50 overflow-x-hidden">
       <CartLink />
       {/* Hero Section */}
@@ -25,8 +51,9 @@ export default function Market() {
             <button className="bg-white text-lime-700 border border-lime-300 hover:bg-lime-50 font-medium py-2 px-6 sm:py-3 sm:px-8 rounded-full shadow-sm hover:shadow-md transition-all duration-300 text-sm sm:text-base">
               View New Arrivals
             </button>
-          </div>
         </div>
+        </div>
+        
       </div>
 
       {/* Featured Products Section */}
@@ -40,13 +67,36 @@ export default function Market() {
           </p>
         </div>
 
-        {/* Product Cards */}
-        <div className="w-full">
-          <ProductCard />
-        </div>
+         {/* Product Cards */}
+         {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="bg-white rounded-xl shadow-md overflow-hidden animate-pulse">
+                <div className="bg-lime-100 aspect-square" />
+                <div className="p-4 space-y-3">
+                  <div className="h-4 bg-lime-100 rounded w-3/4"></div>
+                  <div className="h-4 bg-lime-100 rounded w-1/4"></div>
+                  <div className="h-3 bg-lime-100 rounded w-full"></div>
+                  <div className="h-3 bg-lime-100 rounded w-full"></div>
+                  <div className="h-10 bg-lime-100 rounded"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : products.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-lime-700">No products found</p>
+          </div>
+        )}
       </div>
-
       {/* Testimonial Section */}
+      
       <div className="bg-lime-100/50 py-16 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10">
@@ -82,5 +132,6 @@ export default function Market() {
         </div>
       </div>
     </div>
+    </>
   );
 }

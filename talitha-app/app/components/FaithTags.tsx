@@ -194,7 +194,7 @@ const [selectedTeaching, setSelectedTeaching] = useState(teachings[0]);
   <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
     <div className="bg-gradient-to-br from-lime-50 to-emerald-50 p-8 rounded-2xl max-w-md mx-auto shadow-xl border border-lime-200 relative transform transition-transform duration-300 scale-95 animate-in fade-in-90 zoom-in-90">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-lime-400 to-emerald-400 rounded-t-2xl"></div>
+      
       <div className="absolute top-4 right-4">
         <button 
           onClick={() => setShowModal(false)} 

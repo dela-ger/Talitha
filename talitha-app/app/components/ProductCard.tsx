@@ -1,75 +1,98 @@
-"use client"
-import React from 'react'
-import { useProduct } from '../context/ProductContext';
-import Image from 'next/image';
-import Link from 'next/link';
+// components/ProductCard.tsx
+'use client'
 
-function ProductCard() {
-    const { products } = useProduct();
+import Link from 'next/link'
+import Image from 'next/image'
+import { Product } from '@/types'  // Import your Product type
+import { useCheckout } from '@/app/context/CheckoutContext'
 
-    return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-            {products.map((product) => (
-                <Link 
-                    key={product.id}
-                    href={`/market/${product.id}`}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
-                >
-                    {/* Product Image */}
-                    <div className="relative h-48 sm:h-56">
-                        <Image
-                            src={product.image}
-                            alt={product.name}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                    </div>
-
-                    {/* Product Details */}
-                    <div className="p-6 space-y-4">
-                        <div className="flex justify-between items-start">
-                            <h3 className="text-xl font-semibold text-gray-900 group-hover:text-lime-700 transition-colors">
-                                {product.name}
-                            </h3>
-                            <span className="bg-lime-100 text-lime-800 px-3 py-1 rounded-full text-sm">
-                                {product.category}
-                            </span>
-                        </div>
-
-                        <p className="text-gray-600 line-clamp-3">
-                            {product.description}
-                        </p>
-
-                        {/* Ministry Impact */}
-                        <div className="flex items-center gap-2 text-sm text-lime-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm3 11h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2V9a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2z"/>
-                            </svg>
-                            <span>30% supports orphanage ministry</span>
-                        </div>
-
-                        {/* Price and Action */}
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <span className="text-2xl font-bold text-lime-700">GH₵{product.price}</span>
-                            </div>
-                            <button 
-                                className="bg-lime-600 text-white px-4 py-2 rounded-lg hover:bg-lime-700 transition-colors"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    // Handle purchase button click
-                                }}
-                            >
-                                Bless This Work
-                            </button>
-                        </div>
-                    </div>
-                </Link>
-            ))}
-        </div>
-    )
+interface ProductCardProps {
+  product: Product
 }
 
-export default ProductCard;
+export default function ProductCard({ product }: ProductCardProps) {
+  const { addItem } = useCheckout()!
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1
+    })
+  }
+
+  return (
+    <Link 
+      href={`/market/${product.id}`} 
+      className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+    >
+      {/* Product Image */}
+      <div className="relative aspect-square overflow-hidden">
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="bg-lime-100 w-full h-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-lime-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+        )}
+        
+        {/* Category Tag */}
+        {product.category && (
+          <span className="absolute top-3 left-3 bg-lime-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+            {product.category}
+          </span>
+        )}
+      </div>
+
+      {/* Product Info */}
+      <div className="p-4">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="font-serif text-lg font-medium text-lime-800 line-clamp-2">
+            {product.name}
+          </h3>
+          <span className="text-lime-700 font-bold whitespace-nowrap ml-2">
+            GH₵{product.price.toFixed(2)}
+          </span>
+        </div>
+        
+        <p className="text-lime-700/80 text-sm line-clamp-3 mb-4 min-h-[60px]">
+          {product.description || 'A meaningful spiritual resource'}
+        </p>
+
+        {/* Add to Cart Button */}
+        <button
+          onClick={handleAddToCart}
+          className="w-full bg-lime-600 hover:bg-lime-700 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Add to Cart
+        </button>
+      </div>
+
+      {/* Ministry Impact Badge */}
+      <div className="px-4 pb-3">
+        <div className="flex items-center gap-2 bg-lime-50 rounded-full px-3 py-1 text-xs">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-lime-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          <span className="text-lime-700">
+            30% supports orphanage ministry
+          </span>
+        </div>
+      </div>
+    </Link>
+  )
+}
