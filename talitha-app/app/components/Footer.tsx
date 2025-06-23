@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
     return (
       <footer className="bg-lime-950 text-white mt-auto">
@@ -15,10 +17,10 @@ const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Quick Links</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/about" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="/sermons" className="hover:text-white transition-colors">Sermons</a></li>
-                <li><a href="/events" className="hover:text-white transition-colors">Events</a></li>
-                <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link href="/market" className="hover:text-white transition-colors">Market</Link></li>
+                <li><Link href="/ticket" className="hover:text-white transition-colors">Events</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
   
@@ -26,10 +28,10 @@ const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Contact</h3>
               <div className="text-gray-400 space-y-2">
-                <p>123 Faith Avenue</p>
-                <p>Grace City, GC 12345</p>
+                <p>Adenta Motherlove</p>
+                <p>Motherlove Street, House #1</p>
                 <p>Email: info@talitha.com</p>
-                <p>Phone: (233) 456-7890</p>
+                <p>Phone: (233) 555493479</p>
               </div>
             </div>
           </div>
