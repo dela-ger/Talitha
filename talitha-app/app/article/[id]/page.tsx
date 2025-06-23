@@ -1,13 +1,40 @@
-"use client";
-import { useParams } from "next/navigation";
 import christianArticles from "../../../data";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ArticleDetail() {
-  const params = useParams();
-  const { id } = params;
-  const article = christianArticles.find((item) => item.id === parseInt(id as string));
+// Generate static params for all articles at build time
+export async function generateStaticParams() {
+  return christianArticles.map((article) => ({
+    id: article.id.toString(),
+  }));
+}
+
+// Generate metadata for each article
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const article = christianArticles.find((item) => item.id === parseInt(id));
+
+  if (!article) {
+    return {
+      title: 'Article Not Found | Talitha',
+      description: 'The requested article could not be found.'
+    };
+  }
+
+  return {
+    title: `${article.title} | Talitha Articles`,
+    description: article.content.substring(0, 160) + '...',
+    openGraph: {
+      title: article.title,
+      description: article.content.substring(0, 160) + '...',
+      type: 'article',
+    },
+  };
+}
+
+export default async function ArticleDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const article = christianArticles.find((item) => item.id === parseInt(id));
 
   if (!article) {
     return (
