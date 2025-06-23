@@ -15,6 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@google/generative-ai": "^0.24.1",
     "@headlessui/react": "^2.2.4",
+    "@netlify/next": "^1.4.9",
     "@supabase/supabase-js": "^2.50.0",
     "framer-motion": "^12.17.0",
     "lucide-react": "^0.482.0",
