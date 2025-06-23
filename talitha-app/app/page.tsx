@@ -1,4 +1,5 @@
 import ArticleCard from "./components/ArticleCard";
+import BibleChat from "./components/BibleChat";
 import FaithTags from "./components/FaithTags";
 import FindHopePage from "./components/FindHope";
 import Hero from "./components/Hero";
@@ -69,8 +70,8 @@ export default function Home() {
             
               <div className="max-w-3xl mx-auto mb-12 space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black">
-  Experience God&apos;s Presence Together
-</h1>
+                Experience God&apos;s Presence Together
+              </h1>
 
                 <p className="text-lg md:text-xl text-gray-600 font-medium">
                   Join fellow believers in worship, fellowship, and spiritual growth at upcoming Kingdom gatherings near you
@@ -98,6 +99,8 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          <BibleChat />
         
       </div>
     </>
