@@ -4,20 +4,84 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 // import { stories } from './../../data/stories';
 
-export default async function StoryPage({ params }: { params: { id: string } }) {
+// Generate static params for all stories at build time
+export async function generateStaticParams() {
+  try {
+    const { data: stories, error } = await supabase
+      .from('stories')
+      .select('id');
+    
+    if (error) {
+      console.error('Error fetching story IDs:', error);
+      return [];
+    }
+    
+    return stories.map((story) => ({
+      id: story.id.toString(),
+    }));
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
+}
+
+// Generate metadata for each story page
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   
-    const { data: story, error} = await supabase
+  try {
+    const { data: story } = await supabase
+      .from('stories')
+      .select('title, content')
+      .eq('id', id)
+      .single();
+
+    if (!story) {
+      return {
+        title: 'Story Not Found | Talitha',
+        description: 'The requested story could not be found.'
+      };
+    }
+
+    // Create a short description from the first paragraph
+    const description = story.content
+      ? story.content.split('\n\n')[0].substring(0, 160) + '...'
+      : 'A story of hope from Talitha';
+
+    return {
+      title: `${story.title} | Talitha Stories`,
+      description,
+      openGraph: {
+        title: story.title,
+        description,
+        type: 'article',
+      },
+    };
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return {
+      title: 'Story | Talitha',
+      description: 'A story of hope from Talitha'
+    };
+  }
+}
+
+export default async function StoryPage({ params }: { params: Promise<{ id: string }> }) {
+  // Await the params before using them
+  const { id } = await params;
+  
+  const { data: story, error} = await supabase
     .from('stories')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
-  
-    if (error) {
-      console.error('Error fetching story:', error);
-      return notFound();
-    }
-  
-    // const story = stories.find((s) => s.id === parseInt(params.id));
+
+  if (error) {
+    console.error('Error fetching story:', error);
+    return notFound();
+  }
+
+  // const story = stories.find((s) => s.id === parseInt(params.id));
 
   if (!story) return notFound();
 

@@ -1,9 +1,9 @@
 [build]
   base = "talitha-app"
   command = "npm run build"
-  publish = "talitha-app/.next"
+  publish = "talitha-app/.out"
 
-[[redirects]]
+  [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
