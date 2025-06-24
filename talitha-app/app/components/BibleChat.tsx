@@ -41,7 +41,7 @@ export default function BibleChat() {
   }
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-gradient-to-br from-lime-50 to-amber-50 border border-lime-200 rounded-xl shadow-md">
+    <div id='chat' className="max-w-xl mx-auto p-6 bg-gradient-to-br from-lime-50 to-amber-50 border border-lime-200 rounded-xl shadow-md">
       <h2 className="text-2xl font-serif font-normal text-lime-800 mb-4 text-center">
         Ask Talitha about the Bible
       </h2>

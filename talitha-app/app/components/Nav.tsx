@@ -12,6 +12,7 @@ export default function Navbar() {
     { href: "/prayer-room", label: "Prayer Room" },
     { href: "/ticket", label: "Events" },
     { href: "/about", label: "About" },
+    { href: "#chat", label: "Talitha Chat" },
   ];
 
   return (
