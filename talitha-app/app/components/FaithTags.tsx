@@ -162,7 +162,7 @@ const [selectedTeaching, setSelectedTeaching] = useState(teachings[0]);
                 <p className="text-lime-900/90">
                   {tag
                     .slice(tag.indexOf(' ') + 1)
-                    .replace(/\*(.*?)\*/g, '<span class="font-semibold text-lime-700">$1</span>')
+                    // .replace(/\*(.*?)\*/g, '<span class="font-semibold text-lime-700">$1</span>')
                     .replace(/_/g, '')
                   }
                 </p>
