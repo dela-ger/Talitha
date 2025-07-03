@@ -7,6 +7,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   
   const navLinks = [
+    { href: "/devotional", label: "Devotional" },
     { href: "/market", label: "Marketplace" },
     { href: "/article", label: "Articles" },
     { href: "/prayer-room", label: "Prayer Room" },
