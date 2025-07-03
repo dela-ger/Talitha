@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -36,12 +37,20 @@ export default function Hero() {
                 </p>
 
                 {/* Call-to-Action Button */}
-                <button className="bg-white/10 text-white px-8 py-3 rounded-lg
-                                 hover:bg-white/20 transition-all duration-300
-                                 text-sm sm:text-base
-                                 backdrop-blur-sm border border-white/20">
-                    Join Our Community
-                </button>
+                <Link
+  href="/community"
+  className="relative group inline-flex items-center gap-3 px-8 py-4 text-white font-semibold text-lg tracking-wide bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl hover:bg-white/20 hover:border-white/30 hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-700"
+>
+  <span className="relative z-10">Visit Community</span>
+  <svg 
+    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+  </svg>
+</Link>
             </div>
         </div>
     )
