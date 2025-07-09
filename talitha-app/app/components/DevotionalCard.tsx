@@ -1,55 +1,52 @@
-'use client';
+// components/DevotionalCard.tsx
+import React from 'react';
 
-import { useState } from 'react';
-
-type Verse = {
-  reference: string;
-  text: string;
+type Devotional = {
+  id: string;
+  title: string;
+  verse: string;
+  summary: string;
+  content: string;
+  devotional_date: string;
 };
 
-export default function DevotionalCard({ verse }: { verse: Verse }) {
-  const [expanded, setExpanded] = useState(false);
-  const [chapterText, setChapterText] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+type DevotionalCardProps = {
+  devotional: Devotional;
+};
 
-  const fetchChapter = async () => {
-    if (chapterText || loading) return;
-    setLoading(true);
-    try {
-      const res = await fetch(`https://bible-api.com/${encodeURIComponent(verse.reference)}?translation=kjv`);
-      const data = await res.json();
-      setChapterText(data.text);
-    } catch {
-      setChapterText('Error loading chapter. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleToggle = () => {
-    setExpanded(!expanded);
-    if (!chapterText && !expanded) {
-      fetchChapter();
-    }
+export default function DevotionalCard({ devotional }: DevotionalCardProps) {
+  // Format the devotional date
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
-      <h2 className="text-2xl font-semibold text-lime-800 mb-2">{verse.reference}</h2>
-      <p className="text-lg text-gray-700 whitespace-pre-line">{verse.text}</p>
-
-      <button
-        onClick={handleToggle}
-        className="mt-4 text-lime-600 underline text-sm hover:text-lime-700 transition"
-      >
-        {expanded ? 'Hide full chapter' : 'Read full chapter'}
-      </button>
-
-      {expanded && (
-        <div className="mt-4 bg-lime-50 border border-lime-200 rounded-md p-4 text-gray-800 whitespace-pre-line text-sm">
-          {loading ? 'Loading full chapter...' : chapterText}
+    <div className="rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl border border-amber-100 bg-white">
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h2 className="text-xl font-bold text-lime-800">{devotional.title}</h2>
+            <p className="text-lg text-amber-700">{devotional.verse}</p>
+          </div>
+          <span className="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm">
+            {formatDate(devotional.devotional_date)}
+          </span>
         </div>
-      )}
+        
+        <div className="prose max-w-none text-gray-700 mb-4">
+          <p className="text-lg font-medium">{devotional.summary}</p>
+        </div>
+        
+        <div className="prose max-w-none text-gray-700">
+          <p>{devotional.content}</p>
+        </div>
+      </div>
     </div>
   );
 }
